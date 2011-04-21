@@ -1,0 +1,14 @@
+.add_to_collection.clearfix
+  %h2 Which collection would you like to place this protocol in?
+  = form_tag(:action => :add_to_collection, :id => @protocol.id) do
+    .collection
+      = label_tag(:collection_select, "Collection")
+      = select_tag(:collection_select, options_for_select(@collections.map{|c| [c.name, c.id] }))
+    .category
+      = label_tag(:category_field, "Category")
+      = text_field_tag(:category_field, "")
+    = submit_tag("Add to Collection", :id => "add_to_collection_button")
+:javascript
+  $(document).ready(function () {
+    init_category_autocomplete($('#collection_select').val());
+  });

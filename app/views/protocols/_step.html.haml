@@ -1,0 +1,14 @@
+= hidden_field_tag("step_id", step.id)
+.times
+  = format_duration(step.duration_hours, step.duration_minutes, step.duration_seconds)
+.text
+  %h2
+    = step.name
+  .instructions
+    = step.instructions.html_safe
+  = maybe_edit_link(nil, "step_edit")
+.image
+  - if step.image
+    = render(:partial => "thumbnail", :locals => { :image => step.image, :show_edit => true })
+  - elsif current_user_is_owner?
+    = link_to("Add an image", "javascript:void(0)", :class => "add_button")

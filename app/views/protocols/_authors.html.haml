@@ -1,0 +1,3 @@
+By
+= authors.map{|a| content_tag(:span, h(a.name), :id => "author_#{a.id}") }.to_sentence.html_safe
+= maybe_edit_link("authors_edit")

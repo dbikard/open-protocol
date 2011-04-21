@@ -1,0 +1,79 @@
+.author_row, .reagent_row {
+    margin-bottom:0.6em;
+}
+.author_row .name {
+    width:30%;
+    margin-right:5%;
+    display:inline-block;
+}
+.reagent_row .name {
+    width:30%;
+    margin-right:5%;
+    display:inline-block;
+}
+
+.reagent_row .link {
+    width:30%;
+    display:inline-block;
+}
+.new_step .remove_button, .author_row .remove_button, .reagent_row .remove_button {
+  margin-bottom:-0.3em;
+}
+.new_step .remove, .author_row .remove, .reagent_row .remove {
+    width:47px;
+    margin-left:-47px;
+    display:inline-block;
+
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    filter: alpha(opacity=50);
+    opacity:0.5;
+}
+.author_row .remove:hover, .reagent_row .remove:hover {
+   -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+   filter: alpha(opacity=100);
+   opacity:1;
+}
+.author_row input, .reagent_row input {
+    width:100%;
+}
+.time input[type=text] {
+    width:2em;
+    text-align:center;
+    padding:0.3em 0.1em;
+    margin:1em 0.5em;
+}
+.new_step {
+    margin-bottom:1em;
+}
+.new_step .time { clear:both; }
+.new_step .remove {
+  display:block;
+  margin-bottom:-2em;
+}
+.new_step .name {
+  padding-bottom:0.4em;
+}
+.new_step .text {
+    float:left;
+    width:81%;
+    margin-right:2%;
+}
+.new_step .image {
+  width:15%;
+  float:right;
+  text-align:center;
+  font-size:0.9em;
+}
+.new_step .image img {
+  border:2px solid #333;
+}
+.new_step .image .add_button{
+}
+.change_image {
+  text-decoration:none;
+  color:#cc8f95;
+  display:inline-block;
+}
+.change_image:hover {
+  color:#8c000d;
+}

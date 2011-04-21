@@ -1,0 +1,56 @@
+#content h1 {
+  text-align:center;
+  font-size:150%;
+}
+#content h1 em {
+  font-style:italic;
+}
+#steps div {
+  font-size:0.9em;
+  text-align:center;
+  display:inline-block;
+}
+.step1, .step2 {
+  margin-right:3em;
+}
+#steps img {
+  margin-top:1em;
+}
+#content ol {
+  padding:1em;
+  list-style: decimal outside;
+}
+ol li {
+  padding:0.2em 0em;
+}
+#search h2 {
+  display:inline-block;
+  width:10%;
+}
+#search form {
+  display:inline-block;
+  width:80%;
+}
+#search input[type=text] {
+  width:100%;
+}
+.category h3 {
+  font-style:italic;
+  font-size:1.2em;
+  margin-bottom:0.2em;
+}
+.category {
+  vertical-align:top;
+  display:inline-block;
+  margin:1% 2% 1% 0;
+  width:22%;
+}
+.category li {
+  padding:0;
+  font-size:0.9em;
+  margin-top:0.3em;
+}
+#search input[type=text].empty {
+  color:#ccc;
+  font-style:italic;
+}

@@ -1,0 +1,23 @@
+= content_for(:head) do
+  = javascript_include_tag 'ckeditor/ckeditor.js'
+  = javascript_include_tag 'ckeditor/adapters/jquery.js'
+  = javascript_include_tag 'collections/new.js'
+  = stylesheet_link_tag 'collections/new.css'
+
+%h1 Add a new collection
+= form_tag({:action => :create}, :remote => true) do
+  = label_tag :name, "Collection Name:"
+  = text_field_tag :name, nil
+  = label_tag :homepage, "External Homepage (optional):"
+  = text_field_tag :homepage
+  = label_tag :description, "Info:"
+  = text_area_tag :description, nil, :rows => 10
+  = label_tag :admins, "Collection Administrators"
+  = label_tag :admin_emails, "Email"
+  %ul#admin_emails
+    %li
+      .remove
+        = link_to("", "javascript:void(0)", :class => "remove_button")
+      = text_field_tag("admins[]", nil)
+  %input{:type => :button, :value => "Add Admin", :id => "add_admin"}
+  = submit_tag("Create Collection", :class => "save_button", :id => "save_collection")

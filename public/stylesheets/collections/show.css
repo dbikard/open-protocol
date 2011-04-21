@@ -1,0 +1,73 @@
+#metadata {
+  text-align:left;
+  padding-left:20%;
+}
+#metadata h1 {
+  font-size:3em;
+  padding:0.3em 0;
+  line-height:140%;
+}
+#metadata h2 {
+  margin-top:0.3em;
+  padding:0;
+}
+.label {
+  font-style: italic;
+  font-size:1.1em;
+}
+#categories {
+  margin-top:2em;
+}
+.category h3 {
+  font-style:italic;
+  font-size:1.2em;
+  margin-bottom:0.2em;
+}
+.category {
+  vertical-align:top;
+  display:inline-block;
+  margin:1% 2% 1% 0;
+  width:23%;
+}
+.category li {
+  font-size:0.9em;
+  margin-top:0.3em;
+}
+
+#description {
+  margin:1em 0;
+}
+.category li .remove_button {
+  background-image: url(/images/notwork_small.png);
+  background-position:left center;
+  background-repeat:no-repeat;
+  display:inline-block;
+  width:16px;
+  height:16px;
+    display:none;
+    text-align:left;
+    padding-left:16px;
+    margin-left:-20px;
+    margin-right:4px;
+}
+
+#delete_collection {
+  padding:0.2em 1em;
+  width:30em;
+}
+#delete_collection h2 {
+  text-align:center;
+  font-size:2em;
+  margin:1em 0;
+}
+#delete_collection form {
+  margin-top:1em;
+}
+#delete_collection form {
+  text-align:center;
+}
+.empty_notice {
+  text-align:center;
+  font-style:italic;
+  color:#aaa;
+}

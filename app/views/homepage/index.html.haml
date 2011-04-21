@@ -1,0 +1,37 @@
+= content_for(:head) do
+  = javascript_include_tag 'homepage/index.js'
+  = stylesheet_link_tag 'homepage/index.css'
+%h1
+  %em openProtocol
+  is the best way to store, share, and find experimental protocols.
+
+%ol
+  %li#search
+    %h2 Search
+    = form_tag(:controller => :search, :action => :new) do
+      = text_field_tag(:search, "protocols, collections...", :class => "empty", :id => "search_field")
+  %li#browse
+    %h2 Browse
+    .categories
+      - @categories.each do |category|
+        .category
+          %h3
+            %span
+              = category.name
+            %ul
+              - list_of(category.category_protocols) do |category_protocol|
+                = link_to(category_protocol.protocol.name, {:action => :show, :controller => :protocols, :id => category_protocol.protocol.id})
+  %li#steps
+    %h2 Create your own!
+    .step1
+      Simple form-based creation...
+      %br
+      = link_to(image_tag("homepage_step1.png"), :action => :new, :controller => :protocols)
+    .step2
+      Hit publish and get a beautiful protocol...
+      %br
+      = link_to(image_tag("homepage_step2.png"), :action => :new, :controller => :protocols)
+    .step3
+      And share it with your colleagues!
+      %br
+      = link_to(image_tag("homepage_step3.png"), :action => :new, :controller => :protocols)

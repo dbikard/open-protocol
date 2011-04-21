@@ -1,0 +1,56 @@
+!!!
+%html
+  %head
+    %title openProtocol 0.1 BETA
+    = stylesheet_link_tag 'reset', 'application'
+    = javascript_include_tag :defaults
+    = javascript_include_tag 'jquery-ui.js'
+    = javascript_include_tag 'facebox.js'
+    = stylesheet_link_tag 'facebox.css'
+    = stylesheet_link_tag 'jquery-ui.css'
+    = csrf_meta_tag
+    - if content_for?(:head)
+      =  yield :head
+    :javascript
+      $(document).ready(function () {
+        $('#register').facebox();
+        $('#login').facebox();
+      });
+  %body
+    #header
+      #logo
+        %h1
+          = link_to("openProtocol 0.1", root_path)
+        %span#beta BETA
+      #menu
+        %ul
+          %li
+            = link_to "Search", search_path
+          %li#add_new_container
+            = link_to "Add New", "javascript:void(0)", :id => "add_new"
+            #add_new_sub_menu{:style => "display:none;"}
+              = link_to "Protocol", :action => :new, :controller => :protocols
+              = link_to "Collection", :action => :new, :controller => :collections
+          %li
+            = link_to "Language", ""
+          %li
+            - if current_user
+              = link_to "Log Out", logout_path
+            - else
+              = link_to "Log In", login_path, :id => "login"
+          %li
+            = link_to "Register", register_path, :id => "register" unless current_user
+    #content
+      = yield
+    #footer
+      #footer_menu
+        %ul
+          %li
+            = link_to "About Us", ""
+          %li
+            = link_to "Blog", ""
+          %li
+            = link_to "Contact", ""
+      = image_tag("cc_license.png", :id => "license")
+      #license_text
+        Except where otherwise noted, content on this site is licensed under a Creative Commons Attribution 3.0 License.

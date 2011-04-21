@@ -1,0 +1,9 @@
+.bundle
+log/*
+tmp/**/*
+*.swp
+.DS_Store
+/vendor/app_gems/*
+/public/system
+/db/sphinx
+/db/sphinx/*

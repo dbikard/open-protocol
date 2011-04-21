@@ -1,0 +1,18 @@
+.new_step.clearfix
+  .remove
+    = link_to("", "javascript:void(0)", :class => "remove_button")
+  .name.clearfix
+    = label_tag :step_name, "Step Title"
+    = text_field_tag :step_name, nil, :class => "major"
+  .text
+    = text_area_tag "instructions_#{step}", nil, :rows => 10
+  .image
+    = link_to("Add an image", "javascript:void(0)", :class => "add_button")
+  .time
+    This step should take
+    = text_field_tag :hours, 0
+    hours, and
+    = text_field_tag :minutes, 0
+    minutes, and
+    = text_field_tag :seconds, 0
+    seconds.

@@ -1,0 +1,73 @@
+= content_for(:head) do
+  - if current_user_is_owner?
+    = javascript_include_tag 'ckeditor/ckeditor.js'
+    = javascript_include_tag 'ckeditor/adapters/jquery.js'
+    = javascript_include_tag 'jquery.json-2.2.js'
+    = javascript_include_tag 'file_uploader/fileuploader.js'
+  = javascript_include_tag 'protocols/show.js'
+  = stylesheet_link_tag 'protocols/show.css'
+
+%h1#name
+  %span
+    = @protocol.name
+  = maybe_edit_link("name_edit")
+#authors.clearfix
+  = render(:partial => "authors", :locals => { :authors => @protocol.authors })
+
+#introduction
+  .times
+    Total Time:
+    = format_duration(*@protocol.total_time_components)
+  .text
+    %h2
+      Introduction
+      = maybe_edit_link("introduction_edit")
+    .content
+      = @protocol.introduction.html_safe
+
+#reagents
+  %h2
+    What You'll Need
+    = maybe_edit_link("reagents_edit")
+  %ul.clearfix
+    = list_of(@protocol.reagents) do |reagent|
+      = link_to_unless(reagent.external_link.blank?, reagent.name, reagent.external_link)
+
+#steps
+  %ul
+    = list_of(@protocol.steps) do |step|
+      = render(:partial => "step", :locals => { :step => step })
+
+#actions
+  %ul.clearfix
+    %li#print_this_out
+      = link_to("Print this out", "")
+    %li#add_to_my_page
+      - if current_user
+        = link_to("Add to my collection", :action => :add_to_collection, :id => @protocol.id)
+      - else
+        &nbsp;
+    %li#works
+      - if current_user
+        = link_to("Works", "")
+      - else
+        &nbsp;
+    %li#not_work
+      - if current_user
+        = link_to("Doesn't Work", "")
+      - else
+        &nbsp;
+%hr
+- if current_user
+  #create_comment.clearfix
+    %h2 Add a Comment
+    = text_area_tag "comment", nil, :rows => 10
+    = link_to("Post Comment", "javascript:void(0)", :id => "submit_comment", :class => "save_button")
+#comments
+  %h2
+    = @protocol.comments.size
+    Comments
+  %ul
+    - @protocol.comments.order("created_at desc").each do |comment|
+      = render(:partial => "comment", :locals => { :comment => comment })
+    

@@ -1,0 +1,11 @@
+<%
+  @read_cmd = 'crontab -l'
+  @write_cmd = 'crontab -'
+  @additive = ["# rubber-sphinx-start", "# rubber-sphinx-end"]
+%>
+
+# incremental index once every 10 minutes
+#*/10 * * * * sudo -u <%= rubber_env.app_user %> /bin/bash -l -i -c '<%= RUBBER_ROOT %>/script/cron-rake RUBBER_ENV=<%= RUBBER_ENV %> ts:in:delta'
+
+# full reindex daily at 4:35
+#35 4 * * * sudo -u <%= rubber_env.app_user %> /bin/bash -l -i -c '<%= RUBBER_ROOT %>/script/cron-rake RUBBER_ENV=<%= RUBBER_ENV %> ts:index'

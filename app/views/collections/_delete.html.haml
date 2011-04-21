@@ -1,0 +1,6 @@
+#delete_collection
+  %h2 Delete Collection
+  %p To confirm, please type "DELETE" into the box below and click Delete Collection. Deletion is permanent and immediate.
+  = form_tag(:action => :delete, :id => @collection.id) do
+    = text_field_tag("delete", nil, :id => "delete_field")
+    = submit_tag("Delete Collection", :id => "delete_confirm")

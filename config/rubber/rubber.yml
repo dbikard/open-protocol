@@ -1,0 +1,148 @@
+# All variables can also be overridden on the role and/or host level by creating
+# a sub level to the config under roles and hosts
+# e.g. to install mysql only on db role, and awstats only on web01:
+#
+# packages: [ruby]
+# roles:
+#   db:
+#     packages: [mysql]
+# hosts:
+#   web01:
+#     packages: [awstats]
+
+# REQUIRED: The name of your application
+app_name: open_protocol
+
+# REQUIRED: The system user to run your app servers as
+app_user: app
+
+# REQUIRED: Notification emails (e.g. monit) get sent to this address
+#
+admin_email: 
+
+# OPTIONAL: If not set, you won't be able to access web_tools
+# server (munin stats, monit status, etc)
+web_tools_user: admin
+web_tools_password: sekret
+
+# REQUIRED: The timezone the server should be in
+timezone: UTC
+
+# REQUIRED: the domain all the instances should be associated with
+#
+domain: openprotocols.net
+
+# OPTIONAL: See rubber-dns.yml for dns configuration
+# This lets rubber update a dynamic dns service with the instance alias
+# and ip when they are created.  It also allows setting up arbitrary
+# dns records (CNAME, MX, Round Robin DNS, etc)
+
+# OPTIONAL: Additional rubber file to pull config from if it exists.  This file will
+# also be pushed to remote host at RUBBER_ROOT/config/rubber/rubber-secret.yml
+#
+# rubber_secret: "#{File.expand_path('~') + '/.ec2' + (RUBBER_ENV == 'production' ? '' : '_dev') + '/rubber-secret.yml' rescue ''}"
+
+# REQUIRED All known cloud providers with the settings needed to configure them
+# There's only one coud provider right now - Amazon Web Services
+# To implement another, clone lib/rubber/cloud/aws.rb
+#
+cloud_providers:
+  aws:
+    # REQUIRED The amazon keys and account ID (digits only, no dashes) used to access the AWS API
+    #
+    access_key: 
+    secret_access_key: 
+    account: 
+
+    # REQUIRED:  The name of the amazon keypair and location of its private key
+    #
+    # NOTE: for some reason Capistrano requires you to have both the public and
+    # the private key in the same folder, the public key should have the
+    # extension ".pub".  The easiest way to get your hand on this is to create the
+    # public key from the private key: ssh-keygen -y -f gsg-keypair > gsg-keypair.pub
+    #
+    key_name: gsg-keypair
+    key_file: "#{Dir[(File.expand_path('~') rescue '/root') + '/.ec2/*' + cloud_providers.aws.key_name].first}"
+
+    # OPTIONAL: Needed for bundling a running instance using rubber:bundle
+    #
+    # pk_file: "#{Dir[(File.expand_path('~') rescue '/root') + '/.ec2/pk-*'].first}"
+    # cert_file: "#{Dir[(File.expand_path('~') rescue '/root') + '/.ec2/cert-*'].first}"
+    # image_bucket: "#{app_name}-images"
+
+    # OPTIONAL: Needed for backing up database to s3
+    # backup_bucket: "#{app_name}-backups"
+
+    # REQUIRED: the ami and instance type for creating instances
+    # The Ubuntu images at http://alestic.com/ work well
+    # Ubuntu 10.04 Lucid	base install	32-bit	ami-7000f019
+    # Ubuntu 10.04 Lucid	base install	64-bit	ami-fa01f193
+    #
+    # m1.small or m1.large or m1.xlarge
+    image_type: m1.small
+    image_id: "#{ %w{m1.small c1.medium}.include?(image_type) ? 'ami-7000f019' : 'ami-fa01f193' }"
+
+# REQUIRED the cloud provider to use
+#
+cloud_provider: aws
+
+# OPTIONAL: Define security groups
+# Each security group is a name associated with a sequence of maps where the
+# keys are the parameters to the ec2 AuthorizeSecurityGroupIngress API
+# source_security_group_name, source_security_group_owner_id
+# ip_protocol, from_port, to_port, cidr_ip
+#
+security_groups:
+  default:
+    description: The default security group
+    rules:
+      - source_group_name: default
+        source_group_account: "#{cloud_providers.aws.account}"
+      - protocol: tcp
+        from_port: 22
+        to_port: 22
+        source_ips: [0.0.0.0/0]
+
+# OPTIONAL: The default security groups to create instances with
+assigned_security_groups: [default]
+
+# OPTIONAL: Automatically create security groups for each host and role
+# EC2 doesn't allow one to change what groups an instance belongs to after
+# creation, so its good to have some empty ones predefined.
+auto_security_groups: true
+
+# OPTIONAL: Automatically isolate security groups for each appname/environment
+# by mangling their names to be appname_env_groupname
+# This makes it safer to have staging and production coexist on the same EC2
+# account, or even multiple apps
+isolate_security_groups: true
+
+# OPTIONAL: Prompts one to sync security group rules when the ones in amazon
+# differ from those in rubber
+prompt_for_security_group_sync: true
+
+# OPTIONAL: The packages to install on all instances
+# You can install a specific version of a package by using a sub-array of pkg, version
+# For example, packages: [[rake, 0.7.1], irb]
+packages: [postfix, build-essential, git-core, ec2-ami-tools]
+
+# OPTIONAL: gem sources to setup for rubygems
+# gemsources: ["http://rubygems.org", "http://gems.github.com"]
+
+# OPTIONAL: The gems to install on all instances
+# You can install a specific version of a gem by using a sub-array of gem, version
+# For example, gem: [[rails, 2.2.2], open4, aws-s3]
+gems: [open4, aws-s3, bundler, [rubber, "#{Rubber.version}"]]
+
+# OPTIONAL: A string prepended to shell command strings that cause multi
+# statement shell commands to fail fast.  You may need to comment this out
+# on some platforms, but it works for me on linux/osx with a bash shell
+#
+stop_on_error_cmd: "function error_exit { exit 99; }; trap error_exit ERR"
+
+# OPTIONAL: The default set of roles to use when creating a staging instance
+# with "cap rubber:create_staging".  By default this uses all the known roles,
+# but this is not always desired for staging, so you can specify a different
+# set here
+#
+staging_roles: "web,app,apache,haproxy,passenger,sphinx,web_tools,db:primary=true"

@@ -1,0 +1,20 @@
+%h3 Create a New Account
+= form_for User.new, :url => users_path, :remote => remote do |f|
+  %ul
+    %li
+      = f.label :email, "email"
+      = f.text_field :email
+    %li
+      = f.label :name, "full name"
+      = f.text_field :name
+
+    %li
+      = f.label :password, "choose a password"
+      = f.password_field :password
+    %li
+      = f.label :password_confirmation, "type password again"
+      = f.password_field :password_confirmation
+    %li
+      = recaptcha_tags(:ajax => remote)
+    %li
+      = f.submit 'Create account'

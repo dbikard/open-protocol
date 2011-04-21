@@ -1,0 +1,40 @@
+= content_for(:head) do
+  = stylesheet_link_tag 'search/new.css'
+  = javascript_include_tag 'search/new.js'
+
+#search_box
+  = form_tag(params.slice(:protocols_only, :collections_only), :id => "search_form") do
+    = label_tag(:search, "Search")
+    = text_field_tag(:search, params[:search].blank? ? "protocols, collections..." : params[:search], :class => params[:search].blank? ? "empty" : "", :id => "search_field")
+%h2 Search Results
+#results.clearfix
+  #filters
+    %ul
+      %li
+        = link_to_if(!params[:collections_only], "Only show collections", "javascript:void(0)", :id => "collections_only")
+      %li
+        = link_to_if(!params[:protocols_only], "Only show protocols", "javascript:void(0)", :id => "protocols_only")
+      %li
+        = link_to_if(params[:protocols_only] || params[:collections_only], "Show collections and protocols", "javascript:void(0)", :id => "all_classes")
+  #matches
+    - if @results
+      %ol
+        = list_of(@results) do |result|
+          .title
+            = search_result_link(result)
+          .metadata
+            %span
+              = result.class.to_s
+            - if result.is_a?(Protocol)
+              %span
+                = time_ago_in_words(result.created_at)
+                ago
+            - if result.is_a?(Collection)
+              %span
+                = result.categories.size
+                categories
+      #pagination
+        = will_paginate(@results) if @results.any?
+        = page_entries_info(@results, :entry_name => "item")
+    - else
+      Please enter a search term.

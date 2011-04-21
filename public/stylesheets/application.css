@@ -1,0 +1,251 @@
+#logo h1 a {
+  color:#222;
+}
+#logo h1 a:hover {
+  text-decoration:none;
+}
+body {
+  font-family:Georgia, serif;
+  color:#222;
+  line-height:140%;
+}
+#header {
+    font-size:200%;
+    padding:0.3em 0.2em 0.3em 0.2em;
+    border-bottom:1px dotted #ccc;
+    margin-bottom:1em;
+}
+#logo {
+    display:inline-block;
+    margin-left:0.2em;
+}
+#logo h1 {
+    display:inline;
+}
+#beta {
+    color:#c40000;
+    font-size:50%;
+}
+#footer_menu, #menu {
+    float:right;
+    display:inline-block;
+    font-size:50%;
+    text-align: right;
+    line-height: 250%;
+}
+#footer_menu {
+    float:right;
+    display:inline-block;
+    font-size:100%;
+    text-align: right;
+    line-height: 250%;
+    margin-right:20%;
+}
+#footer_menu ul, #menu ul {
+    list-style-type: none;
+}
+#footer_menu ul li, #menu ul li {
+    padding-right:.5em;
+    display:inline;
+}
+#footer_menu a, #menu a {
+    text-decoration:none;
+    color:#000;
+}
+#footer_menu a:hover, #menu a:hover {
+    text-decoration:underline;
+}
+#add_new_container{
+  position:relative;
+}
+#add_new_container.open #add_new {
+  color:#aaa;
+  text-decoration:none;
+}
+#add_new_sub_menu {
+  position:absolute;
+  top:1.6em;
+  left:0px;
+  width:12em;
+  text-align:left;
+}
+#add_new_sub_menu a {
+  margin-right:0.5em;
+}
+#content {
+    padding:1em 10%;
+}
+#footer {
+    margin:0.2em;
+    text-align:left;
+}
+#license {
+    float:left;
+    padding-right:8px;
+    padding-left:8px;
+}
+#license_text {
+    color:#aaa;
+    font-size:12px;
+    width:450px;
+    line-height:140%;
+}
+#content label {
+    display:block;
+    padding:0.1em 0em 0.4em 0em;
+}
+#content h1 {
+  font-size:180%;
+}
+a {
+  color:#8c000d;
+  text-decoration:none;
+}
+a:hover {
+  text-decoration:underline;
+}
+textarea.major, input.major {
+    width:80%;
+}
+textarea, input {
+    font-size:1em;
+    padding:0.6em;
+    border-radius:5px;
+    moz-border-radius:5px;
+    o-border-radius:5px;
+}
+textarea, input[type=text], input[type=password] {
+    border:1px solid #BBB;
+    font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+label.major, #content h2 {
+    padding:1em 0em;
+    font-size:130%;
+}
+#content fieldset {
+    padding:1em;
+}
+
+.save_button {
+    display:inline-block;
+    padding:0.6em;
+    margin-top:0.4em;
+    border:3px solid #fff;
+}
+.save_button:hover {
+    background:#81ddfa;
+    border:3px solid #81ddfa;
+}
+.save_button, .add_button, .button {
+    font-family:Helvetica, Arial, sans-serif;
+    color:#000;
+    text-decoration:none;
+    font-size:1.4em;
+}
+.save_button:hover, .add_button:hover, .button:hover {
+    text-decoration:none;
+}
+.add_button:hover {
+    border:3px solid #72902A;
+}
+.add_button {
+    background-image: url(/images/add.png);
+    background-position:10px center;
+    background-repeat:no-repeat;
+    display:inline-block;
+    padding:0.6em;
+    border:3px solid #C3DD82;
+    background-color:#C3DD82;
+}
+.remove_button {
+    background-image: url(/images/notwork.png);
+    background-position:left center;
+    background-repeat:no-repeat;
+    display:inline-block;
+    width:27px;
+    height:27px;
+}
+.add_button {
+  padding-left:47px;
+}
+.error {
+  color:red;
+}
+/* new clearfix */
+.clearfix:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+	}
+* html .clearfix             { zoom: 1; } /* IE6 */
+*:first-child+html .clearfix { zoom: 1; } /* IE7 */
+
+.edit_button {
+  text-decoration:none;
+  color:#cc8f95;
+  display:inline-block;
+  font-size:12px;
+}
+.edit_button:hover {
+  color:#8c000d;
+}
+.add_to_collection {
+  width:34em;
+  padding:1em;
+}
+.add_to_collection h2 {
+  font-size:1.2em;
+  text-align:center;
+  margin-bottom:1em;
+}
+.add_to_collection label {
+  display:block;
+}
+.add_to_collection div {
+  display:inline-block;
+  width:49%;
+}
+.add_to_collection .collection {
+    margin-right:1%;
+}
+.add_to_collection input[type=text], .add_to_collection select {
+  width:97%;
+}
+.add_to_collection .success {
+  text-align:center;
+  color:#C3DD82;
+  font-weight:bold;
+  width:100%;
+  font-size:2em;
+}
+#add_to_collection_button {
+  float:right;
+}
+#register_login {
+  width:50em;
+  padding:2em;
+}
+#register_login .register, #register_login .login {
+  display:inline-block;
+  vertical-align:top;
+  width:49%;
+  margin:0;
+}
+#register_login label {
+  display:block;
+}
+#register_login h2 {
+  text-align:center;
+  font-size:1.6em;
+  padding-bottom:1.5em;
+}
+#register_login h3 {
+  font-size:1.2em;
+  padding-bottom:0.5em;
+}
+.register input[type=text], .register input[type=password], .login input[type=text], .login input[type=password] {
+  padding:0.2em;
+}

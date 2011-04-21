@@ -1,0 +1,4 @@
+= content_for(:head) do
+  = stylesheet_link_tag 'user_sessions/new.css'
+= render :partial => "new_session_form", :locals => {:remote => false}
+%p Don't have an account? #{link_to "Sign up", new_user_path}!

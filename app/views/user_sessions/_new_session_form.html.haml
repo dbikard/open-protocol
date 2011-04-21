@@ -1,0 +1,13 @@
+%h3 Log In
+= form_for UserSession.new, :url => user_session_path, :remote => remote do |f|
+  %ul
+    %li
+      = f.label :email, "email"
+      = f.text_field :email
+    %li
+      = f.label :password, "password"
+      = f.password_field :password
+    %li
+      = link_to("Forgot your password?", :action => :forgot_password, :controller => :users)
+    %li
+      = f.submit "Log in"

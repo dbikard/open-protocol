@@ -1,0 +1,6 @@
+#register_login
+  %h2 Welcome to openProtocol!
+  .register
+    = render :partial => "users/new_user_form", :locals => {:remote => true}
+  .login
+    = render :partial => "user_sessions/new_session_form", :locals => {:remote => true}

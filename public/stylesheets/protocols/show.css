@@ -1,0 +1,228 @@
+#content {
+  padding:1em 2em;
+}
+#content #name {
+  font-size:2.6em;
+  line-height:1.2em;
+  margin-bottom:0.6em;
+}
+#authors {
+  margin-bottom:2em;
+}
+#introduction h2 {
+  padding-top:0;
+}
+.times {
+  color:#BBB;
+  font-style: italic;
+  float:left;
+  width:18%;
+  padding-right:2%;
+  text-align:right;
+}
+.new_step, #name, #authors, #reagents, #create_comment, #comments, #actions {
+  padding-left:20%;
+  width:60%;
+  max-width:600px;
+}
+#introduction .text, #steps .text {
+  display:inline-block;
+  width:60%;
+  max-width:600px;
+}
+#reagents ul li {
+  vertical-align:top;
+  display:inline-block;
+  width:30%;
+  margin:1%;
+}
+#reagents {
+  margin-bottom:1em;
+}
+#steps .instructions, #introduction .content {
+  text-align:justify;
+}
+#steps li {
+  margin-bottom:2em;
+}
+#steps h2 {
+  padding-top:0;
+  padding-bottom:0;
+}
+#steps .image {
+  display:inline-block;
+  margin-left:2%;
+  margin-top:3em;
+}
+#steps .text {
+  vertical-align:top;
+}
+#steps .image img {
+  border:2px solid #333;
+}
+#steps .text p:empty {
+  display:none;
+}
+#actions li {
+  float:left;
+}
+#actions a {
+  color:#8c000d;
+  background-position:0.1em left;
+  background-size:1em 1em;
+  background-repeat:no-repeat;
+  display:inline-block;
+  padding-left: 1.6em;
+}
+#print_this_out {
+  width:25%;
+}
+#add_to_my_page {
+  width:36%;
+}
+#works {
+  width:18%;
+}
+#not_works {
+  width:16%
+}
+#print_this_out a {
+  background-position:center left;
+  background-image: url(/images/print.svg);
+}
+#add_to_my_page a {
+  background-position:center left;
+  background-image: url(/images/add.svg);
+}
+#works a {
+  background-image: url(/images/works.svg);
+}
+#not_work a {
+  background-image: url(/images/noworks.svg);
+  background-position:bottom left;
+}
+hr {
+  margin:1em 20%;
+  height:1px;
+  padding:0px;
+  border:0px;
+  border-bottom:1px dotted #ccc;
+  max-width:600px;
+}
+#create_comment textarea {
+  width:100%;
+}
+#create_comment textarea {
+  width:100%;
+}
+#submit_comment {
+  float:right;
+}
+#comments ul li {
+  margin-bottom:1em;
+}
+#comments ul li .name {
+  font-size: 1.1em;
+}
+#comments ul li .timestamp {
+  color:#aaa;
+  margin-left:2em;
+}
+#comments ul li .body {
+  padding:0.4em;
+}
+#steps .new_step .text {
+  width:81%;
+}
+#steps .new_step .text textarea {
+  width:100%;
+}
+#steps .new_step .remove_button {
+  margin-top:0;
+}
+#name input[type=text] {
+  width:100%;
+}
+#name input[type=submit] {
+  font-size:0.4em;
+  margin-top:0;
+}
+input[type=text] {
+  padding:0.2em;
+}
+input[type=submit] {
+  padding:0.2em;
+  margin:0.2em;
+}
+#authors input[type=text] {
+}
+#authors li {
+  width:30%;
+  margin-right:10%;
+  float:left;
+  text-align:center;
+}
+#authors li a {
+  line-height:2em;
+}
+.text p {
+  margin-top:0.8em;
+}
+#reagents.editing li {
+  float:none;
+  width:100%;
+}
+#reagents.editing input[type=text] {
+  margin-right:1em;
+}
+#steps h2 input {
+  width:100%;
+}
+#steps .times input[type=text] {
+  width:2em;
+  text-align:center;
+  padding:0.3em 0.1em;
+  margin:1em 0.2em;
+}
+
+.image {
+  text-align:center;
+}
+.image img {
+  border:2px solid #333;
+}
+.change_image {
+  padding-left:38px;
+  text-decoration:none;
+  color:#cc8f95;
+  background-image:url(/images/change_light.png);
+  background-repeat:no-repeat;
+  background-position:10px top;
+  display:none;
+}
+.change_image:hover {
+  color:#8c000d;
+  background-image:url(/images/change_dark.png);
+}
+.image .add_button {
+  display:none;
+}
+.editing .image .add_button {
+  display:block;
+}
+.editing .change_image {
+  display:block;
+}
+#steps .editing .times input {
+  margin-top:0.2em;
+}
+#authors label {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  font-size: 70%;
+  text-align: left;
+  margin-left: 0.8em;
+}
+#authors ul {
+  margin-bottom:1em;
+}

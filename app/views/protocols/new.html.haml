@@ -1,0 +1,31 @@
+= content_for(:head) do
+  = javascript_include_tag 'ckeditor/ckeditor.js'
+  = javascript_include_tag 'ckeditor/adapters/jquery.js'
+  = javascript_include_tag 'jquery.json-2.2.js'
+  = javascript_include_tag 'file_uploader/fileuploader.js'
+  = javascript_include_tag 'protocols/new.js'
+  = stylesheet_link_tag 'protocols/new.css'
+
+%h1 Add a new protocol
+%fieldset
+  = label_tag :title, "Title", :class => "major"
+  = text_field_tag :title, "", :class => "major"
+%fieldset
+  %h2 Authors
+  = render(:partial => "author_row")
+  = link_to("Add an author", { :action => "new_author" }, :id => "add_author", :class => "add_button", :remote => true)
+%fieldset{:style => "width:80%;"}
+  = label_tag :introduction, "Introduction", :class => "major"
+  = text_area_tag :introduction, "", :rows => 10, :class => "major"
+%fieldset
+  %h2 Required Reagents
+  = render(:partial => "reagent_row")
+  = render(:partial => "reagent_row")
+  = link_to("Add a reagent", { :action => "new_reagent" }, :id => "add_reagent", :class => "add_button", :remote => true)
+%fieldset#step_container
+  %h2 Steps
+  = render(:partial => "new_step", :locals => {:step => 1})
+  = render(:partial => "new_step", :locals => {:step => 2})
+  = link_to("Add a step", { :action => "new_step" }, { :id => "add_step", :class => "add_button" , :remote => true })
+  = link_to("Done, Publish!", "javascript:void(0)", :id => "publish_button", :class => "save_button")
+  

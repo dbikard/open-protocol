@@ -1,0 +1,6 @@
+%a{:href => image.source_url, :onclick => "jQuery.facebox({ image: this.href }); return false;"}
+  = image_tag(image.thumbnail_url)
+= hidden_field_tag(:image_id, image.id)
+- if show_edit
+  = link_to("Change Picture", "javascript:void(0)", :class => "change_image")
+  = link_to("Remove Picture", "javascript:void(0)", :class => "change_image remove_image")

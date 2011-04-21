@@ -1,0 +1,42 @@
+= content_for(:head) do
+  - if current_user_is_admin?
+    = javascript_include_tag 'ckeditor/ckeditor.js'
+    = javascript_include_tag 'ckeditor/adapters/jquery.js'
+  = javascript_include_tag 'collections/show.js'
+  = stylesheet_link_tag 'collections/show.css'
+
+#metadata
+  %h1
+    = @collection.name
+  %h2#contact
+    %span.label Contact:
+    %span.text
+      = @collection.contact
+    = admin_edit_link("contact_edit")
+  %h2#homepage
+    %span.label Homepage:
+    = link_to(@collection.homepage, @collection.homepage, :id => "homepage_link")
+    = admin_edit_link("homepage_edit")
+
+#categories.clearfix
+  - if @categories.empty?
+    .empty_notice
+      This collection has no protocols, yet!
+  - @categories.each do |category|
+    .category
+      %h3
+        %span
+          = category.name
+        = admin_edit_link(category.id)
+        %ul
+          - list_of(category.category_protocols) do |category_protocol|
+            = link_to("", {:action => :remove_protocol, :controller => :collections, :id => category_protocol.id}, :class => "remove_button") if current_user_is_admin?
+            = link_to(category_protocol.protocol.name, {:action => :show, :controller => :protocols, :id => category_protocol.protocol.id})
+
+#description
+  %span.label Info:
+  .text
+    = @collection.description.html_safe
+  = admin_edit_link("description_edit")
+
+= link_to("Delete this collection page", {:action => :delete, :controller => :collections, :id => @collection.id}, :id => "delete_link") if current_user_is_admin?
