@@ -6,18 +6,20 @@
   = form_tag(params.slice(:protocols_only, :collections_only), :id => "search_form") do
     = label_tag(:search, "Search")
     = text_field_tag(:search, params[:search].blank? ? "protocols, collections..." : params[:search], :class => params[:search].blank? ? "empty" : "", :id => "search_field")
-%h2 Search Results
-#results.clearfix
-  #filters
-    %ul
-      %li
-        = link_to_if(!params[:collections_only], "Only show collections", "javascript:void(0)", :id => "collections_only")
-      %li
-        = link_to_if(!params[:protocols_only], "Only show protocols", "javascript:void(0)", :id => "protocols_only")
-      %li
-        = link_to_if(params[:protocols_only] || params[:collections_only], "Show collections and protocols", "javascript:void(0)", :id => "all_classes")
-  #matches
-    - if @results
+- if params[:search].blank?
+  %h2 Please enter a search term.
+- else
+  %h2 Search Results
+  #results.clearfix
+    #filters
+      %ul
+        %li
+          = link_to_if(!params[:collections_only], "Only show collections", "javascript:void(0)", :id => "collections_only")
+        %li
+          = link_to_if(!params[:protocols_only], "Only show protocols", "javascript:void(0)", :id => "protocols_only")
+        %li
+          = link_to_if(params[:protocols_only] || params[:collections_only], "Show collections and protocols", "javascript:void(0)", :id => "all_classes")
+    #matches
       %ol
         = list_of(@results) do |result|
           .title
@@ -36,5 +38,3 @@
       #pagination
         = will_paginate(@results) if @results.any?
         = page_entries_info(@results, :entry_name => "item")
-    - else
-      Please enter a search term.
