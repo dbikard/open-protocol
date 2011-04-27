@@ -40,7 +40,7 @@
   margin-bottom:1em;
 }
 #steps .instructions, #introduction .content {
-  text-align:justify;
+  text-align:left;
 }
 #steps li {
   margin-bottom:2em;
