@@ -19,7 +19,7 @@ class UsersController < ApplicationController
         render :json => { :ok => verify_recaptcha && @user.save }
       end
       format.html do
-        if verify_recaptcha && @user.save
+        if @user.save
           redirect_back_or_default root_url
         else
           render :action => :new
