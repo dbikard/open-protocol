@@ -30,15 +30,15 @@ class ProtocolsController < ApplicationController
   end
 
   def new_step
-    render(:partial => "protocols/new_step.html.haml", :locals => { :step => params[:step] })
+    render(:partial => "protocols/new_step.html.haml", :locals => { :step => params[:step], :allow_delete => true })
   end
 
   def new_author
-    render(:partial => "protocols/author_row.html.haml")
+    render(:partial => "protocols/author_row.html.haml", :locals => { :allow_delete => true })
   end
 
   def new_reagent
-    render(:partial => "protocols/reagent_row.html.haml")
+    render(:partial => "protocols/reagent_row.html.haml", :locals => { :allow_delete => true })
   end
 
   def upload_image

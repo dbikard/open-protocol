@@ -1,6 +1,9 @@
 .reagent_row
   .remove
-    = link_to("", "javascript:void(0)", :class => "remove_button")
+    - if allow_delete
+      = link_to("", "javascript:void(0)", :class => "remove_button")
+    - else
+      &nbsp;
   .name
     = label_tag :reagent_name, "Name"
     = text_field_tag :reagent_name
