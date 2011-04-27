@@ -1,3 +1,6 @@
+html {
+  height:88%;
+}
 #logo h1 a {
   color:#222;
 }
@@ -8,6 +11,7 @@ body {
   font-family:Georgia, serif;
   color:#222;
   line-height:140%;
+  height:88%;
 }
 #header {
     font-size:200%;
@@ -73,6 +77,7 @@ body {
   margin-right:0.5em;
 }
 #content {
+    min-height:100%;
     padding:1em 10%;
 }
 #footer {
