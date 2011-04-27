@@ -6,18 +6,18 @@
 
 %h1 Add a new collection
 = form_tag({:action => :create}, :remote => true) do
-  = label_tag :name, "Collection Name:"
+  = label_tag :name, "Collection Name: (Ex: Feynman Lab Protocols, Useful Drosophila Protocols, etc.)"
   = text_field_tag :name, nil
   = label_tag :homepage, "External Homepage (optional):"
   = text_field_tag :homepage
   = label_tag :description, "Info:"
   = text_area_tag :description, nil, :rows => 10
-  = label_tag :admins, "Collection Administrators"
+  = label_tag :admins, "Collection Members: Just add your members emails here, if they have an account they will automatically have collection privileges on openProtocol--if not, we'll invite them to join."
   = label_tag :admin_emails, "Email"
   %ul#admin_emails
     %li
       .remove
         = link_to("", "javascript:void(0)", :class => "remove_button")
       = text_field_tag("admins[]", nil)
-  %input{:type => :button, :value => "Add Admin", :id => "add_admin"}
+  %input{:type => :button, :value => "Add Members", :id => "add_admin"}
   = submit_tag("Create Collection", :class => "save_button", :id => "save_collection")
