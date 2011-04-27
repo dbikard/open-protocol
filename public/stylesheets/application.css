@@ -233,10 +233,17 @@ label.major, #content h2 {
   width:50em;
   padding:2em;
 }
-#register_login .register, #register_login .login {
+#register_login .register {
   display:inline-block;
   vertical-align:top;
   width:49%;
+  margin:0 6% 0 0;
+  border-right:3px solid #ccc;
+}
+#register_login .login {
+  display:inline-block;
+  vertical-align:top;
+  width:40%;
   margin:0;
 }
 #register_login label {
