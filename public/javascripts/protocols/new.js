@@ -115,7 +115,7 @@ $(document).ready(function () {
       data    : { 'protocol' : $.toJSON(protocol) },
       success : function (data, textStatus, jqXHR) {
         if (data.ok) {
-          $.facebox({ ajax : "/protocol/" + data.id + "/add_to_collection" });
+          $.facebox({ ajax : "/protocol/" + data.id + "/add_to_collection" }, null, { modal : true });
         } else {
           alert(data.error);
         }

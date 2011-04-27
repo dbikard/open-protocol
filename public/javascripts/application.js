@@ -24,10 +24,6 @@ function init_register_form () {
     }
   });
 }
-function init_facebox () {
-  $.facebox.settings.closeImage   = '/images/facebox/closelabel.png';
-  $.facebox.settings.loadingImage = '/images/facebox/loading.gif';
-}
 function init_add_new_menu () {
   $('#add_new').hover(function () {
     var container = $('#add_new_container');
@@ -100,7 +96,6 @@ function init_search () {
 $(document).ready(function () {
   init_login_form();
   init_register_form();
-  init_facebox();
   init_add_new_menu();
   init_add_to_collection();
 });

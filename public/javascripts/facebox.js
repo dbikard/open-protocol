@@ -67,8 +67,8 @@
  *
  */
 (function($) {
-  $.facebox = function(data, klass) {
-    $.facebox.loading()
+  $.facebox = function(data, klass, settings) {
+    $.facebox.loading(settings)
 
     if (data.ajax) fillFaceboxFromAjax(data.ajax, klass)
     else if (data.image) fillFaceboxFromImage(data.image, klass)
@@ -85,21 +85,22 @@
     settings: {
       opacity      : 0.2,
       overlay      : true,
-      loadingImage : '/facebox/loading.gif',
-      closeImage   : '/facebox/closelabel.png',
+      modal        : false,
+      loadingImage : '/images/facebox/loading.gif',
+      closeImage   : '/images/facebox/closelabel.png',
       imageTypes   : [ 'png', 'jpg', 'jpeg', 'gif' ],
       faceboxHtml  : '\
     <div id="facebox" style="display:none;"> \
       <div class="popup"> \
         <div class="content"> \
         </div> \
-        <a href="#" class="close"><img src="/facebox/closelabel.png" title="close" class="close_image" /></a> \
+        <a href="#" class="close"><img src="/images/facebox/closelabel.png" title="close" class="close_image" /></a> \
       </div> \
     </div>'
     },
 
-    loading: function() {
-      init()
+    loading: function(settings) {
+      init(settings)
       if ($('#facebox .loading').length == 1) return true
       showOverlay()
 
@@ -113,7 +114,7 @@
       }).show()
 
       $(document).bind('keydown.facebox', function(e) {
-        if (e.keyCode == 27) $.facebox.close()
+        if ((e.keyCode == 27) && !$.facebox.settings.modal) $.facebox.close()
         return true
       })
       $(document).trigger('loading.facebox')
@@ -141,11 +142,10 @@
 
   $.fn.facebox = function(settings) {
     if ($(this).length == 0) return
-
     init(settings)
 
     function clickHandler() {
-      $.facebox.loading(true)
+      $.facebox.loading()
 
       // support for rel="facebox.inline_popup" syntax, to add a class
       // also supports deprecated "facebox[.inline_popup]" syntax
@@ -186,8 +186,12 @@
       preload.slice(-1).src = $(this).css('background-image').replace(/url\((.+)\)/, '$1')
     })
 
-    $('#facebox .close').click($.facebox.close)
-    $('#facebox .close_image').attr('src', $.facebox.settings.closeImage)
+    if ($.facebox.settings.modal) {
+      $('#facebox .close').remove()
+    } else {
+      $('#facebox .close_image').attr('src', $.facebox.settings.closeImage)
+      $('#facebox .close').click($.facebox.close)
+    }
   }
 
   // getPageScroll() by quirksmode.com
@@ -275,7 +279,11 @@
 
     $('#facebox_overlay').hide().addClass("facebox_overlayBG")
       .css('opacity', $.facebox.settings.opacity)
-      .click(function() { $(document).trigger('close.facebox') })
+      .click(function() {
+        if (!$.facebox.settings.modal) {
+          $(document).trigger('close.facebox')
+        }
+      })
       .fadeIn(200)
     return false
   }
