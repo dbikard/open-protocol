@@ -27,7 +27,7 @@ OpenProtocol::Application.routes.draw do
 
 
   match 'users/forgot_password'        => "users#forgot_password"
-
+  match 'about' => "homepage#about", :as => 'about'
   match 'login' => "user_sessions#new", :as => 'login'
   match 'logout' => "user_sessions#destroy", :as => 'logout'
   match 'register' => "users#new", :as => 'register'

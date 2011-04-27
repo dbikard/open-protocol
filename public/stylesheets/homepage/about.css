@@ -1,0 +1,33 @@
+.narrow_wrapper {
+  margin-left:20%;
+  width:60%;
+}
+#content h2 {
+  font-size:1.6em;
+}
+h3 {
+  font-size:1.1em;
+  font-style:italic;
+  margin-bottom:0.6em;
+}
+.staff_list {
+  padding-top:1em;
+}
+.staff {
+  vertical-align: top;
+  width:45%;
+  display:inline-block;
+  padding:1em 0;
+}
+.staff.first {
+  padding-right:9%;
+}
+.staff .title {
+  margin-top:0.4em;
+  margin-bottom:0.2em;
+  font-style:italic;
+}
+p {
+  margin-bottom:1em;
+  text-align:justify;
+}
