@@ -441,4 +441,6 @@ $(document).ready(function () {
     init_uploader(upload_button);
   });
   $('#add_to_my_page a').facebox();
+  $('#works a').facebox();
+  $('#not_work a').facebox();
 });

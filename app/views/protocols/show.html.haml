@@ -46,17 +46,17 @@
       - if current_user
         = link_to("Add to my collection", :action => :add_to_collection, :id => @protocol.id)
       - else
-        &nbsp;
+        = link_to("Add to my collection", register_path)
     %li#works
       - if current_user
         = link_to("Works", "")
       - else
-        &nbsp;
+        = link_to("Works", register_path)
     %li#not_work
       - if current_user
         = link_to("Doesn't Work", "")
       - else
-        &nbsp;
+        = link_to("Doesn't Work", register_path)
 %hr
 - if current_user
   #create_comment.clearfix
