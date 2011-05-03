@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     respond_to do |format|
       format.json do
-        render :json => { :ok => verify_recaptcha && @user.save }
+        render :json => { :ok => @user.save }
       end
       format.html do
         if @user.save
