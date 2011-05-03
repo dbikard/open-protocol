@@ -15,13 +15,14 @@ body {
 }
 #header {
     font-size:200%;
-    padding:0.3em 10%;
-    border-bottom:1px dotted #ccc;
+    padding:0.3em 0;
+    margin-right:10%;
+    margin-left:10%;
+    border-bottom:1px dotted #000;
     margin-bottom:1em;
 }
 #logo {
     display:inline-block;
-    margin-left:0.2em;
 }
 #logo h1 {
     display:inline;
@@ -80,15 +81,14 @@ body {
     padding:1em 10%;
 }
 #footer {
-    margin:0.2em;
+    margin:0.2em 10%;
     text-align:left;
-    border-top:1px dotted #ccc;
-    padding:0.6em 10% 0.3em 10%;
+    border-top:1px dotted #000;
+    padding:0.6em 0 0.3em 0;
 }
 #license {
     float:left;
     padding-right:8px;
-    padding-left:8px;
 }
 #license_text {
     color:#aaa;
