@@ -135,6 +135,7 @@ DEPENDENCIES
   mysql2
   paperclip
   rails (= 3.0.4)
+  rake
   recaptcha!
   rubber
   sanitize
