@@ -88,6 +88,7 @@ namespace :rubber do
       # config always needs to be run before start as
       # rubber generates a sphinx config file with new paths
       run_sphinx 'ts:config ts:start'
+      rsudo "chmod +r #{current_path}/log/searchd.#{RUBBER_ENV}.pid"
     end
 
     desc "Restarts sphinx searchd"
