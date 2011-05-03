@@ -1,7 +1,7 @@
 .author_row
   .remove
     - if allow_delete
-      = link_to("", "javascript:void(0)", :class => "remove_button")
+      = link_to("", "javascript:void(0)", :class => "remove_button", :tabindex => "-1")
     - else
       &nbsp;
   .name
