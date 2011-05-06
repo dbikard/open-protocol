@@ -27,6 +27,9 @@
       #menu
         %ul
           %li
+            - if current_user.try(:administrated_collections).try(:any?)
+              = link_to "My Collections", :action => :my, :controller => :collections
+          %li
             = link_to "Search", search_path
           %li#add_new_container
             = link_to "Add New", "javascript:void(0)", :id => "add_new"

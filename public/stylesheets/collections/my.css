@@ -1,0 +1,20 @@
+#collections {
+  width:80%;
+  padding-left:10%;
+}
+#collections li {
+  margin-bottom:1em;
+}
+#collections li .title {
+  font-size:1.4em;
+  padding-bottom:0.2em;
+}
+#collections li .metadata {
+  color:#ccc;
+}
+#collections li .metadata span {
+  margin-right:1em;
+}
+#collections ol {
+  padding-bottom:2em;
+}

@@ -1,5 +1,12 @@
 class CollectionsController < ApplicationController
   before_filter :require_user, :except => [:show]
+  def my
+    if current_user.administrated_collections.one?
+      return redirect_to :action => :show, :id => current_user.administrated_collections.first.id
+    end
+    @collections = current_user.administrated_collections
+  end
+
   def new
   end
   def create

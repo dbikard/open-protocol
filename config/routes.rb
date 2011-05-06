@@ -18,6 +18,7 @@ OpenProtocol::Application.routes.draw do
   get  'protocol/:id'                => "protocols#show"
 
   get  'collections/new'              => "collections#new"
+  get  'collections/my'               => "collections#my"
   post 'collection/create'            => "collections#create"
   post 'collections/remove_protocol'  => "collections#remove_protocol"
   post 'collections/rename_category'  => "collections#rename_category"

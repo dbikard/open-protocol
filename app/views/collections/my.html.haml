@@ -1,0 +1,21 @@
+= content_for(:head) do
+  = stylesheet_link_tag 'collections/my.css'
+#collections
+  %h2 Collections administrated by you:
+  %ul
+    = list_of(@collections) do |collection|
+      .title
+        = link_to(collection.name, :action => :show, :id => collection.id)
+      .metadata
+        %span
+          = collection.categories.size
+          categories
+  %h2 Collections created by you:
+  %ul
+    = list_of(@collections.select{|c| c.user_id == current_user.id}) do |collection|
+      .title
+        = link_to(collection.name, :action => :show, :id => collection.id)
+      .metadata
+        %span
+          = collection.categories.size
+          categories
