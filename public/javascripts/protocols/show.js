@@ -22,20 +22,20 @@ function create_text_input(name) {
 }
 function parse_time (times_string) {
   var times = times_string.match(/((\d+) hr)?\s*((\d+) min)?\s*((\d+) sec)?/);
-  var hours = parseInt(times[2] || 0);
-  var minutes = parseInt(times[4] || 0);
-  var seconds = parseInt(times[6] || 0);
+  var hours = parseInt(times[2] || 0, 10);
+  var minutes = parseInt(times[4] || 0, 10);
+  var seconds = parseInt(times[6] || 0, 10);
   return [hours, minutes, seconds];
 }
 function format_time (container, hours, minutes, seconds) {
   container.html("");
-  if (parseInt(hours || 0) > 0) {
+  if (parseInt(hours || 0, 10) > 0) {
     container.append(hours).append(" hr ");
   }
-  if (parseInt(minutes || 0) > 0) {
+  if (parseInt(minutes || 0, 10) > 0) {
     container.append(minutes).append(" min ");
   }
-  if (parseInt(seconds || 0) > 0) {
+  if (parseInt(seconds || 0, 10) > 0) {
     container.append(seconds).append(" sec");
   }
 }
@@ -441,6 +441,32 @@ $(document).ready(function () {
     init_uploader(upload_button);
   });
   $('#add_to_my_page a').facebox();
-  $('#works a').facebox();
-  $('#not_work a').facebox();
+
+  $('#works.half_opacity').add("#not_work.half_opacity").fadeTo(100, 0.5);
+
+  $('#works a').add('#not_work a').click(function () {
+    var link = $(this);
+    if (link.hasClass("active")) {
+      $.ajax({
+        url     : link.attr("href"),
+        type    : 'POST',
+        success : function (data, textStatus, jqXHR) {
+          if (data.ok) {
+            if (link.parents("#works").length == 1) {
+              $('#not_work').fadeTo(100, 0.5);
+              $('#works').fadeTo(100, 1.0);
+            } else {
+              $('#works').fadeTo(100, 0.5);
+              $('#not_work').fadeTo(100, 1.0);
+            }
+          } else {
+            alert(data.error);
+          }
+        }
+      });
+    } else {
+      link.facebox();
+    }
+    return false;
+  });
 });

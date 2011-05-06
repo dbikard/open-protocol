@@ -19,3 +19,5 @@ gem 'will_paginate', '~> 3.0.pre2'
 gem 'recaptcha', :git => "git://github.com/timonk/recaptcha.git", :require => 'recaptcha/rails'
 # Deploy with Capistrano
 gem 'capistrano'
+# For testing fixtures
+gem 'factory_girl_rails'

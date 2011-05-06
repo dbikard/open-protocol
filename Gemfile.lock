@@ -45,22 +45,26 @@ GEM
       xml-simple
     bcrypt-ruby (2.1.4)
     builder (2.1.2)
-    capistrano (2.5.21)
+    capistrano (2.6.0)
       highline
       net-scp (>= 1.0.0)
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
-      net-ssh-gateway (>= 1.0.0)
+      net-ssh-gateway (>= 1.1.0)
     erubis (2.6.6)
       abstract (>= 1.0.0)
-    haml (3.0.25)
+    factory_girl (1.3.3)
+    factory_girl_rails (1.0.1)
+      factory_girl (~> 1.3)
+      railties (>= 3.0.0)
+    haml (3.1.1)
     highline (1.6.1)
-    httpclient (2.2.0.1)
+    httpclient (2.2.0.2)
     i18n (0.5.0)
-    jquery-rails (0.2.7)
+    jquery-rails (1.0)
       rails (~> 3.0)
-      thor (~> 0.14.4)
-    mail (2.2.17)
+      thor (~> 0.14)
+    mail (2.2.19)
       activesupport (>= 2.3.6)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -74,7 +78,7 @@ GEM
     net-sftp (2.0.5)
       net-ssh (>= 2.0.9)
     net-ssh (2.1.4)
-    net-ssh-gateway (1.0.1)
+    net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
     nettica (0.4.0)
       mumboe-soap4r
@@ -118,7 +122,7 @@ GEM
       polyglot (>= 0.3.1)
     ts-datetime-delta (1.0.2)
       thinking-sphinx (>= 1.3.8)
-    tzinfo (0.3.26)
+    tzinfo (0.3.27)
     will_paginate (3.0.pre2)
     xml-simple (1.0.15)
     yajl-ruby (0.8.2)
@@ -130,6 +134,7 @@ DEPENDENCIES
   authlogic
   bcrypt-ruby
   capistrano
+  factory_girl_rails
   haml
   jquery-rails
   mysql2

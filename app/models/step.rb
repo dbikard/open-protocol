@@ -11,8 +11,12 @@ class Step < ActiveRecord::Base
   def instructions=(text)
     write_attribute(:instructions, Sanitize.clean(text, SANITIZE_OPTIONS))
   end
-  def before_save
-    self.name = "Step #{self.position}" if self.name.blank?
-    self.instructions = "Please enter instructions for this step." if self.instructions.blank?
-  end
+
+  before_save :set_defaults
+
+  private
+    def set_defaults
+      self.name = "Step #{self.position}" if self.name.blank?
+      self.instructions = "Please enter instructions for this step." if self.instructions.blank?
+    end
 end

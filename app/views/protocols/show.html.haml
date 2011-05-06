@@ -47,16 +47,16 @@
         = link_to("Add to my collection", :action => :add_to_collection, :id => @protocol.id)
       - else
         = link_to("Add to my collection", register_path)
-    %li#works
+    %li#works{:class => ("half_opacity" if @vote && !@vote.up?)}
       - if current_user
-        = link_to("Works", "")
+        = link_to("Works", { :action => :vote, :controller => :protocols, :id => @protocol.id, :type => :up } , :class => "active")
       - else
-        = link_to("Works", register_path)
-    %li#not_work
+        = link_to("Works", register_path, :class => "inactive")
+    %li#not_work{:class => ("half_opacity" if @vote && @vote.up?)}
       - if current_user
-        = link_to("Doesn't Work", "")
+        = link_to("Doesn't Work", { :action => :vote, :controller => :protocols, :id => @protocol.id, :type => :down } , :class => "active")
       - else
-        = link_to("Doesn't Work", register_path)
+        = link_to("Doesn't Work", register_path, :class => "inactive")
 %hr
 - if current_user
   #create_comment.clearfix

@@ -6,6 +6,17 @@ class ProtocolsController < ApplicationController
 
   def show
     @protocol = Protocol.find(params[:id])
+    if current_user
+      @vote = @protocol.protocol_votes.where(:user_id => current_user.id).first
+    end
+  end
+
+  def vote
+    protocol = Protocol.find(params[:id])
+    protocol.vote!(params[:type].to_sym, current_user)
+    render :json => { :ok => true }
+  rescue => e
+    render :json => { :ok => false, :error => e.message }
   end
 
   def create

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110411065207) do
+ActiveRecord::Schema.define(:version => 20110504033941) do
 
   create_table "authors", :force => true do |t|
     t.string   "name",        :null => false
@@ -80,13 +80,25 @@ ActiveRecord::Schema.define(:version => 20110411065207) do
     t.datetime "updated_at"
   end
 
-  create_table "protocols", :force => true do |t|
-    t.string   "name",         :null => false
-    t.text     "introduction", :null => false
-    t.integer  "category_id"
-    t.integer  "user_id",      :null => false
+  create_table "protocol_votes", :force => true do |t|
+    t.integer  "user_id",     :null => false
+    t.integer  "protocol_id", :null => false
+    t.boolean  "up",          :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  add_index "protocol_votes", ["user_id", "protocol_id", "up"], :name => "uq_user_id_protocol_id_up_protocol_votes"
+
+  create_table "protocols", :force => true do |t|
+    t.string   "name",                        :null => false
+    t.text     "introduction",                :null => false
+    t.integer  "category_id"
+    t.integer  "user_id",                     :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "up_votes",     :default => 0
+    t.integer  "down_votes",   :default => 0
   end
 
   add_index "protocols", ["user_id", "category_id"], :name => "ix_protocols_user_id_category_id"

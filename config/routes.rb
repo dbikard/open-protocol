@@ -8,6 +8,7 @@ OpenProtocol::Application.routes.draw do
   get  'protocols/new_reagent'        => "protocols#new_reagent"
   post 'protocols/upload_image'       => "protocols#upload_image"
   post 'protocols/remove_image'       => "protocols#remove_image"
+  post 'protocol/:id/vote'            => "protocols#vote"
   match 'protocol/:id/add_to_collection' => "protocols#add_to_collection"
   post 'protocol/:id/create_comment' => "protocols#create_comment"
   post 'protocol/:id/inline_edit'    => "protocols#inline_edit"
