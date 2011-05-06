@@ -259,3 +259,22 @@ label.major, #content h2 {
 .register input[type=text], .register input[type=password], .login input[type=text], .login input[type=password] {
   padding:0.2em;
 }
+#feedback {
+  padding:0.2em 0.4em;
+  position:absolute;
+  top:50%;
+  left:-1.8em;
+  background:#8c000d;
+  border:2px solid #000;
+
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+#feedback a {
+  display:block;
+  color:#FFF;
+  font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-style:italic;
+}
