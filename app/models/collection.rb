@@ -4,10 +4,24 @@ class Collection < ActiveRecord::Base
   has_many :categories
   has_many :collection_admins, :dependent => :destroy
 
+  has_many :admins, :through => :collection_admins
+
   after_create :make_owner_admin
 
   define_index do
     indexes :name
+  end
+
+  def add_new_admin!(user)
+    collection_admin = self.collection_admins.build
+    collection_admin.admin = user
+    collection_admin.save!
+  end
+
+  def add_emails_as_admins!(admin_emails)
+    admins = User.where(:email => admin_emails)
+    # TODO: Email invitations to admins who are not yet users.
+    admins.each {|admin| add_new_admin!(admin) }
   end
 
   def description=(text)
@@ -24,8 +38,6 @@ class Collection < ActiveRecord::Base
   private
 
     def make_owner_admin
-      self_admin = self.collection_admins.build
-      self_admin.user = self.user
-      self_admin.save!
+      self.add_new_admin!(self.user)
     end
 end
