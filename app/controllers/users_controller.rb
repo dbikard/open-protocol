@@ -45,14 +45,21 @@ END
   
   def create
     @user = User.new(params[:user])
-    respond_to do |format|
-      format.json do
-        render :json => { :ok => @user.save }
-      end
-      format.html do
-        if @user.save
+    if @user.save
+      respond_to do |format|
+        format.json do
+          render :json => { :ok => true }
+        end
+        format.html do
           redirect_back_or_default root_url
-        else
+        end
+      end
+    else
+      respond_to do |format|
+        format.json do
+          render :json => { :ok => false, :errors => @user.errors.full_messages }
+        end
+        format.html do
           render :action => :new
         end
       end

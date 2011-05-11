@@ -30,7 +30,11 @@ function init_register_form () {
     if (data.ok) {
       window.location.reload();
     } else {
-      alert("Invalid info.");
+      var error_list = $('#register_login .register .error');
+      error_list.html('');
+      $(data.errors).each(function (ix, message) {
+        error_list.append($("<li></li>").html(message));
+      });
     }
   });
 }

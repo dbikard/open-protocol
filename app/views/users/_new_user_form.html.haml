@@ -1,4 +1,8 @@
 %h3 Create a New Account
+%ul.error
+  - if @user.try(:errors)
+    = list_of(@user.errors.full_messages) do |message|
+      = message
 = form_for User.new, :url => users_path, :remote => remote do |f|
   %ul
     %li

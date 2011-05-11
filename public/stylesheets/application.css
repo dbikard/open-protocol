@@ -259,6 +259,9 @@ label.major, #content h2 {
 .register input[type=text], .register input[type=password], .login input[type=text], .login input[type=password] {
   padding:0.2em;
 }
+#register_login .register .error {
+  font-size:80%;
+}
 #feedback {
   padding:0.2em 0.4em;
   position:absolute;

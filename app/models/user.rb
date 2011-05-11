@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :administrated_collections, :through => :collection_admins
 
   after_create :make_default_collection
+  after_create :send_welcome_email
 
   def refresh_reset_token!
     self.reset_token = Authlogic::Random.friendly_token
@@ -17,7 +18,9 @@ class User < ActiveRecord::Base
   end
 
   private
-
+    def send_welcome_email
+      Mailer.mail_welcome(self)
+    end
     def make_default_collection
       self.collections.create!(:name => "#{self.name}'s Collections", :contact => self.email)
     end
