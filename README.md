@@ -67,20 +67,20 @@ The above only needs doing once, the first time you create a staging environment
 * In `config/rubber/rubber.yml`, fill out the `admin_email` entry with an email address where system notifications should go. Under `cloud_providers`, `aws`, fill out the `access_key`, `secret_access_key`, and `account` fields with the appropriate values from your AWS account.
 * In `config/s3.yml`, fill out the `staging` entry. For `bucket`, call it `openprotocols-images-staging` or something to that effect if that is taken.
 * Assuming you have signed up for recaptcha, enter your credentials into `config/initializers/recaptcha.rb`.
-* Run, `rake secret` and then paste that value into the empty string in `config/initializers/secret_token.rb` that follows `SECRET_TOKEN = `
-* Now simply run `RUBBER_ENV=staging cap rubber:create_staging` and just accept the defaults all the way through. It will prompt you for the local machine's sudo password in order to modify `/etc/hosts` with the `staging.openprotocols.net` alias.
+* Run, `bundle exec rake secret` and then paste that value into the empty string in `config/initializers/secret_token.rb` that follows `SECRET_TOKEN = `
+* Now simply run `RUBBER_ENV=staging bundle exec cap rubber:create_staging` and just accept the defaults all the way through. It will prompt you for the local machine's sudo password in order to modify `/etc/hosts` with the `staging.openprotocols.net` alias.
 
 This process should create the application server instance, configure it, and deploy code to it over the course of about 20 minutes.
 
-Any subsequent code deploys to the same, existing staging environment can be done with `RUBBER_ENV=staging cap deploy`. This will deploy the exact code you have locally to the server.
+Any subsequent code deploys to the same, existing staging environment can be done with `RUBBER_ENV=staging bundle exec cap deploy`. This will deploy the exact code you have locally to the server.
 
 **NOTE: the staging environment creation will add an entry to your `/etc/hosts` file that will alias `staging.openprotocols.net` to the staging env.**
 
-To destroy the staging environment, `RUBBER_ENV=staging cap rubber:destroy_staging`. This will destroy the application server instance, but you have to manually shut down the RDS instance in the AWS console.
+To destroy the staging environment, `RUBBER_ENV=staging bundle exec cap rubber:destroy_staging`. This will destroy the application server instance, but you have to manually shut down the RDS instance in the AWS console.
 
 ## Creating a production environment on AWS
 
-Until there's a need to create a larger production environment, we will use the `cap rubber:create_staging` shortcut to launch production. To do this we need to do the following:
+Until there's a need to create a larger production environment, we will use the `bundle exec cap rubber:create_staging` shortcut to launch production. To do this we need to do the following:
 
 * Go to the RDS tab and create a new `DB Security Group` called `production`.
 * Then, follow the steps for setting up staging, above, except for creating a new keypair. (That is, from **MARKER1** downward.)
@@ -95,7 +95,7 @@ Until there's a need to create a larger production environment, we will use the 
 * When creating the production database, you might want to provision a bit more space, say 10-20GB, given how cheap storage is.
 * Be sure to select a new `SECRET_TOKEN` for production.
 
-Finally, `RUBBER_ENV=production cap rubber:create_staging`. Leave the default alias of production. Do NOT have it remove the staging security groups if you have your staging environment up in parallel.
+Finally, `RUBBER_ENV=production bundle exec cap rubber:create_staging`. Leave the default alias of production. Do NOT have it remove the staging security groups if you have your staging environment up in parallel.
 
 ## Production notes:
 
