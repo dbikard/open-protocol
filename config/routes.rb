@@ -37,6 +37,6 @@ OpenProtocol::Application.routes.draw do
   match 'register' => "users#new", :as => 'register'
 
   match 'search' => "search#new", :as => 'search'
-
+  match 'feedback' => "homepage#feedback", :as => 'feedback'
   root :to => "homepage#index"
 end

@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     user = User.where(:email => params[:email]).first
     if user
       user.refresh_reset_token!
-      UserMailer.mail_user(user,
+      Mailer.mail_user(user,
         :subject   => 'Password Reset',
         :text_body => <<-END
   Please go to #{url_for(:controller => :users, :action => :reset_password, :id => user.id, :reset_token => user.reset_token)} to reset your OpenProtocols.net password.

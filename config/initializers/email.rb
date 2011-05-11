@@ -1,3 +1,5 @@
+WEBMASTER_EMAIL_ADDRESS = "".freeze
+raise "You must specify an email address for the webmaster." if WEBMASTER_EMAIL_ADDRESS.blank?
 FROM_EMAIL_ADDRESS = "".freeze
 raise "You must specify an email address from which the application can send email." if FROM_EMAIL_ADDRESS.blank?
 require 'yaml'

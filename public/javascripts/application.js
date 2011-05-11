@@ -6,6 +6,16 @@ var ADD_IMAGE_BUTTON = "<a href='javascript:void(0)' class='add_button'>Add an i
 /*
   Global inits
 */
+function init_feedback_form () {
+  $('#feedback_form').live('ajax:success', function (element, data, status, xhr) {
+    if (data.ok) {
+      $('#feedback_form_container').html("<div class='success'>Thanks!</div>");
+      setTimeout(function () {
+        $(document).trigger('close.facebox');
+      }, 600);
+    }
+  });
+}
 function init_login_form () {
   $('#new_user_session').live('ajax:success', function (element, data, status, xhr) {
     if (data.ok) {
@@ -94,6 +104,7 @@ function init_search () {
   });
 }
 $(document).ready(function () {
+  init_feedback_form();
   init_login_form();
   init_register_form();
   init_add_new_menu();

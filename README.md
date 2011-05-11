@@ -3,7 +3,7 @@
 
 In order to operate or stage OpenProtocol, you need to be registered for RDS, EC2, and SES.
 
-Specifically for SES, you must verify the email address from which your application will be sending email. See [this document](http://docs.amazonwebservices.com/ses/latest/DeveloperGuide/index.html?InitialSetup.EmailVerification.html) for how to verify an email, and then fill in that email in `config/`
+Specifically for SES, you must verify the email address from which your application will be sending email. See [this document](http://docs.amazonwebservices.com/ses/latest/DeveloperGuide/index.html?InitialSetup.EmailVerification.html) for how to verify an email, and then fill in that email in `config/initializers/email.rb`. See below for more details.
 
 ##  Setting up a development environment on OS X
 

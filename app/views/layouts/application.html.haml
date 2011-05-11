@@ -15,10 +15,11 @@
       $(document).ready(function () {
         $('#register').facebox();
         $('#login').facebox();
+        $('#feedback a').facebox();
       });
   %body
     #feedback
-      = link_to("Feedback", "mailto:foo@example.com")
+      = link_to("Feedback", feedback_path)
     #header
       #logo
         %h1

@@ -1,0 +1,5 @@
+#feedback_form_container
+  %h2 Tell us how we can make openProtocol better!
+  = form_tag(feedback_path, :id => :feedback_form, :remote => true) do
+    = text_area_tag(:feedback, nil, :rows => "10", :id => "feedback_text")
+    = submit_tag("Send feedback")
