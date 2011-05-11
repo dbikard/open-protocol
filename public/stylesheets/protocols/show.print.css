@@ -1,0 +1,14 @@
+#actions,
+#menu,
+#feedback,
+#footer_menu,
+#comments,
+#create_comment {
+  display:none;
+}
+#introduction .text, #steps .text {
+  width:50%;
+}
+#content {
+  font-size:80%;
+}

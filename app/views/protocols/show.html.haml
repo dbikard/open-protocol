@@ -5,7 +5,8 @@
     = javascript_include_tag 'jquery.json-2.2.js'
     = javascript_include_tag 'file_uploader/fileuploader.js'
   = javascript_include_tag 'protocols/show.js'
-  = stylesheet_link_tag 'protocols/show.css'
+  = stylesheet_link_tag 'protocols/show.css', :media => "all"
+  = stylesheet_link_tag 'protocols/show.print.css', :media => "print"
 
 %h1#name
   %span
@@ -41,7 +42,7 @@
 #actions
   %ul.clearfix
     %li#print_this_out
-      = link_to("Print this out", "")
+      = link_to_function("Print this out", "window.print()")
     %li#add_to_my_page
       - if current_user
         = link_to("Add to my collection", :action => :add_to_collection, :id => @protocol.id)
