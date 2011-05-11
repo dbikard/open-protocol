@@ -1,4 +1,6 @@
 OpenProtocol::Application.routes.draw do
+  match 'users/reset_password'         => "users#reset_password"
+  match 'users/forgot_password'        => "users#forgot_password"
   resources :users
   resource :user_session
   get  'protocols/new'                => "protocols#new"

@@ -1,4 +1,10 @@
 # OpenProtocol
+## AWS needed
+
+In order to operate or stage OpenProtocol, you need to be registered for RDS, EC2, and SES.
+
+Specifically for SES, you must verify the email address from which your application will be sending email. See [this document](http://docs.amazonwebservices.com/ses/latest/DeveloperGuide/index.html?InitialSetup.EmailVerification.html) for how to verify an email, and then fill in that email in `config/`
+
 ##  Setting up a development environment on OS X
 
 _(We assume here that you have a github account and commit access to the repo)_
@@ -17,8 +23,11 @@ _(We assume here that you have a github account and commit access to the repo)_
 * `git clone git@github.com:ericmeltzer/open-protocol.git`
 * `cd open-protocol`
 * `bundle install --path vendor/app_gems`
+* Run, `bundle exec rake secret` and then paste that value into the empty string in `config/initializers/secret_token.rb` that follows `SECRET_TOKEN = `
+* Fill in the FROM_EMAIL_ADDRESS variable with the email address you verified with SES.
 * `bundle exec rake db:create`
 * `bundle exec rake db:migrate`
+
 * `bundle exec rails server`
 * Visit [http://localhost:3000/]() and you're set!
 
@@ -54,6 +63,7 @@ The above only needs doing once, the first time you create a staging environment
           password: dbpassword
           port: 3306
   Where `host` is the `Endpoint` and `username` and `password` are what were specified when creating the RDS instance.
+* In `config/ses.yml`, edit the `staging` entry with your SES credentials. (Just your regular AWS creds.)
 * In `config/rubber/rubber.yml`, fill out the `admin_email` entry with an email address where system notifications should go. Under `cloud_providers`, `aws`, fill out the `access_key`, `secret_access_key`, and `account` fields with the appropriate values from your AWS account.
 * In `config/s3.yml`, fill out the `staging` entry. For `bucket`, call it `openprotocols-images-staging` or something to that effect if that is taken.
 * Assuming you have signed up for recaptcha, enter your credentials into `config/initializers/recaptcha.rb`.

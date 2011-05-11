@@ -11,6 +11,11 @@ class User < ActiveRecord::Base
 
   after_create :make_default_collection
 
+  def refresh_reset_token!
+    self.reset_token = Authlogic::Random.friendly_token
+    self.save!
+  end
+
   private
 
     def make_default_collection
