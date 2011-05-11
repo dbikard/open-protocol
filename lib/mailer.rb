@@ -5,13 +5,13 @@ class Mailer
       :source    => %{"OpenProtocols" <#{FROM_EMAIL_ADDRESS}>}
     ))
   end
-  def self.mail_webmaster(user, feedback)
+  def self.mail_webmaster(user, ref, feedback)
     SES.send_email(
       :to        => [WEBMASTER_EMAIL_ADDRESS],
       :source    => %{"OpenProtocols" <#{FROM_EMAIL_ADDRESS}>},
       :subject   => "Friggin' feedback",
       :text_body => <<-END
-User #{user.try(:email) || 'Anonymous'} sez:
+User #{user.try(:email) || 'Anonymous'} from #{ref} sez:
 
 #{feedback}
 END

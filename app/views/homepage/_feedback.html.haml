@@ -3,3 +3,8 @@
   = form_tag(feedback_path, :id => :feedback_form, :remote => true) do
     = text_area_tag(:feedback, nil, :rows => "10", :id => "feedback_text")
     = submit_tag("Send feedback")
+:javascript
+  $(document).ready(function () {
+    var hidden = $('<input type="hidden" name="ref"></input>').val(window.location.href);
+    $('#feedback_form_container form').append(hidden);
+  });

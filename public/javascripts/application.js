@@ -104,6 +104,10 @@ function init_search () {
   });
 }
 $(document).ready(function () {
+  $('#register').facebox();
+  $('#login').facebox();
+  $('#feedback a').facebox();
+
   init_feedback_form();
   init_login_form();
   init_register_form();

@@ -6,7 +6,7 @@ class HomepageController < ApplicationController
   end
   def feedback
     if request.post?
-      Mailer.mail_webmaster(current_user, params[:feedback])
+      Mailer.mail_webmaster(current_user, params[:ref], params[:feedback])
       render :json => { :ok => true }
     else
       render :partial => "feedback"
