@@ -13,6 +13,8 @@ function init_feedback_form () {
       setTimeout(function () {
         $(document).trigger('close.facebox');
       }, 600);
+    } else {
+      $('#feedback_form_container .error').html(data.error);
     }
   });
 }
@@ -28,7 +30,11 @@ function init_login_form () {
 function init_register_form () {
   $('#new_user').live('ajax:success', function (element, data, status, xhr) {
     if (data.ok) {
-      window.location.reload();
+      $('#register_login').html("<div class='success'>Thanks!</div>");
+      setTimeout(function () {
+        $(document).trigger('close.facebox');
+        window.location.reload();
+      }, 1000);
     } else {
       var error_list = $('#register_login .register .error');
       error_list.html('');

@@ -1,7 +1,9 @@
 #feedback_form_container
   %h2 Tell us how we can make openProtocol better!
+  .error
   = form_tag(feedback_path, :id => :feedback_form, :remote => true) do
     = text_area_tag(:feedback, nil, :rows => "10", :id => "feedback_text")
+    = recaptcha_tags(:ajax => true)
     = submit_tag("Send feedback")
 :javascript
   $(document).ready(function () {

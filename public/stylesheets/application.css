@@ -297,3 +297,10 @@ label.major, #content h2 {
 #feedback_form_container form {
   text-align:center;
 }
+#recaptcha_area {
+  margin:0 auto 1.5em auto;
+}
+#feedback_form_container .error {
+  text-align:center;
+  padding:1em;
+}

@@ -19,4 +19,6 @@
       = f.label :password_confirmation, "type password again"
       = f.password_field :password_confirmation
     %li
+      = recaptcha_tags(:ajax => remote)
+    %li
       = f.submit 'Create account'

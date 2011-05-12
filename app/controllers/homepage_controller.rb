@@ -6,8 +6,14 @@ class HomepageController < ApplicationController
   end
   def feedback
     if request.post?
-      Mailer.mail_webmaster(current_user, params[:ref], params[:feedback])
-      render :json => { :ok => true }
+      if params[:feedback].blank?
+        render :json => { :ok => false, :error => "Please fill out the feedback form." }
+      elsif !verify_recaptcha
+        render :json => { :ok => false, :error => "Please try the CAPTCHA again." }
+      else
+        Mailer.mail_webmaster(current_user, params[:ref], params[:feedback])
+        render :json => { :ok => true }
+      end
     else
       render :partial => "feedback"
     end
