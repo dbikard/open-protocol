@@ -41,10 +41,12 @@ _(We assume that you have already set up an AWS account and have set up the dev 
 * Select the EC2 tab. Select the `Key Pairs` subsection.
 * Click `Create Key Pair` and name it `gsg-keypair`. It will download as `gsg-keypair.pem`.
 * Set up the keys:
+
         mkdir ~/.ec2
         cd ~/.ec2
         mv ~/Downloads/gsg-keypair.pem gsg-keypair
         ssh-keygen -y -f gsg-keypair > gsg-keypair.pub
+
 **MARKER1**
 * Now select the `Security Groups` section. Create a new group, call it `open_protocol_staging_app`, and the description `Rubber automatic security group for role: app`. Leave the rest default and create it.
 * Select the RDS tab. Start an instance (db.m1.small should suffice). 5GB of storage should suffice. Call it `staging`. Choose some username and password that you remember. On the next screen, name the database `open_protocol`. The rest of the page is fine as a default. On the next page, leave all the backup settings as the default, and then finally launch the instance. Wait for it to boot. Note the `Endpoint` field in the bottom pane.
