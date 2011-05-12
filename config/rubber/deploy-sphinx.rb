@@ -96,6 +96,7 @@ namespace :rubber do
       # rake tasks that load rails env can be slow, so
       # do multiple here as a performance tweak
       run_sphinx 'ts:config ts:stop ts:start'
+      rsudo "chmod +r #{current_path}/log/searchd.#{RUBBER_ENV}.pid"
     end
 
     desc "Configures sphinx index"
