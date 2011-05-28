@@ -45,7 +45,7 @@ END
   
   def create
     @user = User.new(params[:user])
-    if verify_recaptcha(:model => @user) && @user.save
+    if verify_recaptcha(:model => @user, :timeout => RECAPTCHA_VERIFY_TIMEOUT) && @user.save
       respond_to do |format|
         format.json do
           render :json => { :ok => true }
