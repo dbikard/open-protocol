@@ -149,7 +149,7 @@ DEPENDENCIES
   mysql2 (= 0.2.7)
   paperclip
   rails (= 3.0.4)
-  rake
+  rake (= 0.8.7)
   recaptcha!
   rubber
   sanitize
