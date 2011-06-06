@@ -36,7 +36,7 @@
 #description
   %span.label Info:
   .text
-    = @collection.description.html_safe
+    = @collection.description.to_s.html_safe
   = admin_edit_link("description_edit")
 
 = link_to("Delete this collection page", {:action => :delete, :controller => :collections, :id => @collection.id}, :id => "delete_link") if current_user_is_admin?
