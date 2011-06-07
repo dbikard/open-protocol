@@ -6,7 +6,7 @@
       = select_tag(:collection_select, options_for_select(@collections.map{|c| [c.name, c.id] }))
     .category
       = label_tag(:category_field, "Category")
-      = text_field_tag(:category_field, "")
+      = text_field_tag(:category_field, "Miscellaneous")
     = submit_tag("Add to Collection", :id => "add_to_collection_button")
 :javascript
   $(document).ready(function () {
