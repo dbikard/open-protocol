@@ -8,8 +8,6 @@ class HomepageController < ApplicationController
     if request.post?
       if params[:feedback].blank?
         render :json => { :ok => false, :error => "Please fill out the feedback form." }
-      elsif !verify_recaptcha(:timeout => RECAPTCHA_VERIFY_TIMEOUT)
-        render :json => { :ok => false, :error => "Please try the CAPTCHA again." }
       else
         Mailer.mail_webmaster(current_user, params[:ref], params[:feedback])
         render :json => { :ok => true }
