@@ -18,7 +18,7 @@
   = label_tag :introduction, "Introduction", :class => "major"
   = text_area_tag :introduction, "", :rows => 10, :class => "major"
 %fieldset
-  %h2 Required Reagents
+  %h2 Materials
   = render(:partial => "reagent_row", :locals => { :allow_delete => false })
   = render(:partial => "reagent_row", :locals => { :allow_delete => true })
   = link_to("Add a reagent", { :action => "new_reagent" }, :id => "add_reagent", :class => "add_button", :remote => true)
