@@ -134,6 +134,7 @@ var CKEDITOR_DEFAULT_STYLE = {
   toolbar_Basic : [['Bold', 'Italic', '-', 'Link', 'Unlink']],
   width:'100%'
 };
+CKEDITOR.config.forcePasteAsPlainText = true;
 /*
   Turn all elements into CKEditors.
 */
