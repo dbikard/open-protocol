@@ -16,7 +16,7 @@ class Step < ActiveRecord::Base
 
   private
     def set_defaults
+      self.instructions = "Please enter instructions for this step." if self.instructions.blank? && self.name.blank?
       self.name = "Step #{self.position}" if self.name.blank?
-      self.instructions = "Please enter instructions for this step." if self.instructions.blank?
     end
 end
