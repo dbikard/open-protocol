@@ -13,12 +13,14 @@ class Collection < ActiveRecord::Base
   end
 
   def add_new_admin!(user)
+    return if self.admins.include?(user)
     collection_admin = self.collection_admins.build
     collection_admin.admin = user
     collection_admin.save!
   end
 
   def add_emails_as_admins!(admin_emails)
+    admin_emails.uniq!
     admins = User.where(:email => admin_emails)
     # TODO: Email invitations to admins who are not yet users.
     admins.each {|admin| add_new_admin!(admin) }
