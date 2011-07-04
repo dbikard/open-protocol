@@ -114,6 +114,9 @@ function init_search () {
   });
 }
 $(document).ready(function () {
+  CKEDITOR.config.forcePasteAsPlainText = true;
+  CKEDITOR.config.disableNativeSpellChecker = false;
+
   $('#register').facebox();
   $('#login').facebox();
   $('#feedback a').facebox();
@@ -134,7 +137,6 @@ var CKEDITOR_DEFAULT_STYLE = {
   toolbar_Basic : [['Bold', 'Italic', '-', 'Link', 'Unlink']],
   width:'100%'
 };
-CKEDITOR.config.forcePasteAsPlainText = true;
 /*
   Turn all elements into CKEditors.
 */
