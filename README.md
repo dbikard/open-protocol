@@ -24,7 +24,7 @@ _(We assume here that you have a github account and commit access to the repo)_
 * `cd open-protocol`
 * `bundle install --path vendor/app_gems`
 * Run, `bundle exec rake secret` and then paste that value into the empty string in `config/initializers/secret_token.rb` that follows `SECRET_TOKEN = `
-* Fill in the FROM_EMAIL_ADDRESS variable with the email address you verified with SES.
+* Fill in the `FROM_EMAIL_ADDRESS` variable with the email address you verified with SES.
 * `bundle exec rake db:create`
 * `bundle exec rake db:migrate`
 
@@ -56,9 +56,10 @@ _(We assume that you have already set up an AWS account and have set up the dev 
 
 The above only needs doing once, the first time you create a staging environment. Now, we modify our local files for staging deployment.
 
-**NOTE: You should NOT push these changes to Github, or else you will be PUBLICIZING YOUR PRIVATE EC2 CREDENTIALS!**
+**NOTE: You should NOT push these changes to Github, or else you will be PUBLICIZING YOUR PRIVATE EC2 CREDENTIALS! Try using a local branch to store this information, which you can rebase on `master`.**
 
 * In `config/database.yml`, edit the `staging` entry to look something like:
+
         staging:
           adapter: mysql2
           database: open_protocol
@@ -66,6 +67,7 @@ The above only needs doing once, the first time you create a staging environment
           username: dbusername
           password: dbpassword
           port: 3306
+
   Where `host` is the `Endpoint` and `username` and `password` are what were specified when creating the RDS instance.
 * In `config/ses.yml`, edit the `staging` entry with your SES credentials. (Just your regular AWS creds.)
 * In `config/rubber/rubber.yml`, fill out the `admin_email` entry with an email address where system notifications should go. Under `cloud_providers`, `aws`, fill out the `access_key`, `secret_access_key`, and `account` fields with the appropriate values from your AWS account.
