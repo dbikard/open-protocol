@@ -69,6 +69,7 @@ The above only needs doing once, the first time you create a staging environment
           port: 3306
 
   Where `host` is the `Endpoint` and `username` and `password` are what were specified when creating the RDS instance.
+
 * In `config/ses.yml`, edit the `staging` entry with your SES credentials. (Just your regular AWS creds.)
 * In `config/rubber/rubber.yml`, fill out the `admin_email` entry with an email address where system notifications should go. Under `cloud_providers`, `aws`, fill out the `access_key`, `secret_access_key`, and `account` fields with the appropriate values from your AWS account.
 * In `config/s3.yml`, fill out the `staging` entry. For `bucket`, call it `openprotocols-images-staging` or something to that effect if that is taken.
